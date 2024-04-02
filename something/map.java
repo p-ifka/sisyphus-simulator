@@ -5,8 +5,13 @@ public class map {
     private static int placeX;
     private static int placeY;
     private static int i;
+
+    public static int wallCount = 15;
+    public static int fireCount = 8;
     public static void room1() {
         Random r = new Random();
+
+        /* make fog */
         for(int column = 0; column<main.SCREEN_HEIGHT; column++) {
             for(int row = 0; row<main.SCREEN_WIDTH; row++) {
                 if(row <= main.areaDiscovered) {
@@ -17,9 +22,8 @@ public class map {
                 }
             }
         }
-        for(i=0; i<7; i++) {
-
-
+        /* make fire */
+        for(i=0; i<fireCount; i++) {
             placeY = r.nextInt(0, main.SCREEN_HEIGHT-1);
             placeX = r.nextInt(0, main.SCREEN_WIDTH-1);
             // System.out.println("placed at: "+placeX+", "+placeY);
@@ -30,7 +34,8 @@ public class map {
             }
         }
         i = 0;
-        for(i=0; i<15; i++) {
+        /* make walls */
+        for(i=0; i<wallCount; i++) {
             placeY = r.nextInt(0, main.SCREEN_HEIGHT-1);
             placeX = r.nextInt(0, main.SCREEN_WIDTH-1);
             // System.out.println("placed at: "+placeX+", "+placeY);
@@ -41,7 +46,6 @@ public class map {
             }
     }
     i = 0;
-    main.screen[4][0] = main.BOULDER_CHAR;
 
     
 }

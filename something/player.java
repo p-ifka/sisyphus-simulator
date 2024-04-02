@@ -54,6 +54,7 @@ public class player {
             main.die("fire");
 
         } else if(object == main.BOULDER_CHAR) {
+            main.statusMessage = "";
             main.screen[x][y] = main.BACKGROUND_CHAR;
             if(dir == 'w') {
                 main.screen[x][y-1] = main.BOULDER_CHAR;
@@ -65,9 +66,15 @@ public class player {
                 main.screen[x+1][y] = main.BOULDER_CHAR;
             }
 
-        } else if(x == main.areaDiscovered-1) {
+
+    }
+    if(x == main.areaDiscovered-1) {
+        if(object == main.BOULDER_CHAR) {
             main.discover();
+        } else {
+            main.statusMessage = "you must push the boulder (0) to continue";
         }
     }
+}
 }
 

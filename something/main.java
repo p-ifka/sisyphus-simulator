@@ -8,10 +8,12 @@ public class main {
     public static final char BOULDER_CHAR = '0';
     public static final char[] FOG_CHARS = {'#', '$', '@', '%'};
 
-    public static final int SCREEN_WIDTH = 42;
+    public static final int SCREEN_WIDTH = 64;
     public static final int SCREEN_HEIGHT = 16;
     public static int areaDiscovered = 9;
     public static boolean running = true;
+
+    public static String statusMessage = "";
 
     public static char[][] screen = new char[SCREEN_WIDTH][SCREEN_HEIGHT];
 
@@ -34,11 +36,13 @@ public class main {
     //     {BACKGROUND_CHAR, BACKGROUND_CHAR, BACKGROUND_CHAR, BACKGROUND_CHAR ,BACKGROUND_CHAR ,BACKGROUND_CHAR, BACKGROUND_CHAR, BACKGROUND_CHAR, BACKGROUND_CHAR, BACKGROUND_CHAR, BACKGROUND_CHAR, BACKGROUND_CHAR, BACKGROUND_CHAR, BACKGROUND_CHAR, BACKGROUND_CHAR, BACKGROUND_CHAR},
     // };
     public static void main(String[] args) {
+        //test.init();
         clearScreen();
         System.out.println("sisyphus simulator 2024™");
-        System.out.println("enter name:");
+        System.out.println("enter anything to start:");
         input.getKey(false);
         map.room1();
+        screen[4][4] = main.BOULDER_CHAR;
         player.placePlayer();
         printSreen();
 
@@ -64,12 +68,17 @@ public class main {
             System.out.println("");
         }
         System.out.println("x:"+player.playerX+" y: "+player.playerY);
+        System.out.println(statusMessage);
     }
 
     public static void discover() {
-        areaDiscovered = areaDiscovered+8;
+        areaDiscovered = areaDiscovered+4;
+        map.wallCount += 5;
+        map.fireCount += 4;
         map.room1();
         player.placePlayer();
+        screen[4][4] = main.BOULDER_CHAR;
+        statusMessage = statusMessage+"\n the boulder rolled down the hill";
     }
 
 

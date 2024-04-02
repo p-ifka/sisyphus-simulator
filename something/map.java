@@ -8,6 +8,9 @@ public class map {
 
     public static int wallCount = 15;
     public static int fireCount = 8;
+
+    public static int boulderHealth = 3;
+
     public static void room1() {
         Random r = new Random();
 
@@ -40,13 +43,32 @@ public class map {
             placeX = r.nextInt(0, main.SCREEN_WIDTH-1);
             // System.out.println("placed at: "+placeX+", "+placeY);
             if(main.screen[placeX][placeY] == main.BACKGROUND_CHAR) {
-            main.screen[placeX][placeY] = 'Σ';
+            main.screen[placeX][placeY] = main.WALL_CHAR;
             } else{
                 i--;
             }
     }
     i = 0;
+    main.screen[4][4] = main.BOULDER_CHAR;
+
 
     
-}
+    }
+    
+    public static void moveBoulder(int targetX, int targetY, int startX, int startY) {
+        char target = main.screen[targetX][targetY];
+        if(target != main.WALL_CHAR) {
+            if(target == main.FIRE_CHAR) {
+                if(boulderHealth <= 1) {
+                    main.die("The boulder melted, keep the boulder away from the fire");
+                } else {
+                map.boulderHealth -= 1;
+                }
+                
+            }
+            main.screen[startX][startY] = main.BACKGROUND_CHAR;
+            main.screen[targetX][targetY] = main.BOULDER_CHAR;
+        }
+    }
+
 }

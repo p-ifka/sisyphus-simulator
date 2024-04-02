@@ -6,6 +6,7 @@ public class main {
     public static final char PLAYER_CHAR = 'ඞ';
     public static final char FIRE_CHAR = '^';
     public static final char BOULDER_CHAR = '0';
+    public static final char WALL_CHAR = 'Σ';
     public static final char[] FOG_CHARS = {'#', '$', '@', '%'};
 
     public static final int SCREEN_WIDTH = 64;
@@ -42,7 +43,6 @@ public class main {
         System.out.println("enter anything to start:");
         input.getKey(false);
         map.room1();
-        screen[4][4] = main.BOULDER_CHAR;
         player.placePlayer();
         printSreen();
 
@@ -68,6 +68,9 @@ public class main {
             System.out.println("");
         }
         System.out.println("x:"+player.playerX+" y: "+player.playerY);
+        for(int i=0; i<map.boulderHealth; i++) {
+            System.out.print("<3 ");
+        }
         System.out.println(statusMessage);
     }
 

@@ -25,6 +25,9 @@ public static void keyActions() {
         if(c == 'd') {
             player.move('d');
         }
+        if(c == 'r') {
+            map.room1();
+        }
     }
 }
   

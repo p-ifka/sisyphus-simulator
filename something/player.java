@@ -55,15 +55,19 @@ public class player {
 
         } else if(object == main.BOULDER_CHAR) {
             main.statusMessage = "";
-            main.screen[x][y] = main.BACKGROUND_CHAR;
+            // main.screen[x][y] = main.BACKGROUND_CHAR;
             if(dir == 'w') {
-                main.screen[x][y-1] = main.BOULDER_CHAR;
+                map.moveBoulder(x, y-1, x, y); //TODO: make this better
+                // main.screen[x][y-1] = main.BOULDER_CHAR;
             } else if(dir == 's') {
-                main.screen[x][y+1] = main.BOULDER_CHAR;
+                map.moveBoulder(x, y+1, x, y);
+                // main.screen[x][y+1] = main.BOULDER_CHAR;
             } else if(dir == 'a') {
-                main.screen[x-1][y] = main.BOULDER_CHAR;
+                map.moveBoulder(x-1, y, x, y);
+                // main.screen[x-1][y] = main.BOULDER_CHAR;
             } else if(dir == 'd') {
-                main.screen[x+1][y] = main.BOULDER_CHAR;
+                map.moveBoulder(x+1, y, x, y);
+                // main.screen[x+1][y] = main.BOULDER_CHAR;
             }
 
 

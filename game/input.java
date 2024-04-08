@@ -3,6 +3,7 @@ import java.util.Scanner;
 
 public class input {
     public static char[] keys = {','};
+    public static int inputs = 0;
 
 public static void getKey(boolean doStuff) {
     Scanner sc = new Scanner(System.in);
@@ -12,6 +13,7 @@ public static void getKey(boolean doStuff) {
     }
 }
 public static void keyActions() {
+    inputs++;
     for(char c : keys) {
         if(c == 'w') {
             player.move('w');
@@ -27,6 +29,9 @@ public static void keyActions() {
         }
         if(c == 'r') {
             map.room1();
+        }
+        if(c == 'l'){
+            main.end();
         }
     }
 }

@@ -1,4 +1,10 @@
 package game;
+
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.Scanner;
+
 public class main {
 
     /*CHARACTERS */
@@ -15,6 +21,7 @@ public class main {
     public static boolean running = true;
 
     public static String statusMessage = "";
+    public static double startTime = 0.0;
 
     public static char[][] screen = new char[SCREEN_WIDTH][SCREEN_HEIGHT];
 
@@ -44,9 +51,9 @@ public class main {
         input.getKey(false);
         map.room1();
         player.placePlayer();
+        startTime = System.currentTimeMillis();
         printSreen();
 
-        System.out.println("STARTING LOOP");
         while(running == true) {
         input.getKey(true); //get key, do stuff for key
         player.placePlayer(); // update player pos
@@ -67,7 +74,7 @@ public class main {
             }
             System.out.println("");
         }
-        System.out.println("x:"+player.playerX+" y: "+player.playerY);
+        System.out.println("x:"+player.playerX+" y: "+player.playerY+" inputs: "+input.inputs);
         for(int i=0; i<map.boulderHealth; i++) {
             System.out.print("<3 ");
         }
@@ -95,4 +102,43 @@ public class main {
         System.out.println(deathMessage);
         System.exit(0);
     }
+
+    public static void end(){ // "end"
+        clearScreen();
+        double endTime = System.currentTimeMillis();
+        double completionTime = Math.abs(endTime-startTime);
+        System.out.println("the end?");
+        System.out.println("game 'completed' in "+completionTime/1000+" s");
+        System.out.println("and "+input.inputs+" inputs");
+        saveScore(input.inputs);
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        sound.stop();
+        main(null);
+
+
+    }
+
+    public static void saveScore(int newScore) {
+        File file = new File("game/highscore");
+        try (Scanner r = new Scanner(file)) {
+            int currentScore = Integer.valueOf(r.nextLine());
+            System.out.println(currentScore);
+
+            if(newScore < currentScore) {
+                FileWriter w = new FileWriter(file);
+                w.write(String.valueOf(newScore)); 
+                w.close();  
+                System.out.println("highscore set");
+            }
+        } catch (NumberFormatException | IOException e) {
+            e.printStackTrace();
+        }
+
+
+    }
+
 }
